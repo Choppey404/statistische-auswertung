@@ -1,1 +1,96 @@
-.idea/
+# For project specific ignore rules look at /project/.gitignore
+###############################################################
+
+# IDE and editor specific files #
+#################################
+nbproject
+.idea
+.buildpath
+.project
+.settings
+.vagrant
+.php_cs.cache
+.nvimrc
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# Docker files #
+################
+docker/mysql/data/*
+docker/php/php.ini
+docker/php/xdebug.ini
+!docker/mysql/data/.gitkeep
+
+# PHPUnit #
+###########
+phpunit.xml
+.phpunit.result.cache
+
+# privision temp files #
+##########################
+provision/ansible/playbook.retry
+
+# project specific files #
+##########################
+project/app/tmp
+project/node_modules
+
+# metrics #
+##########################
+metrics/*
+!metrics/.gitkeep
+
+# Provision backup file #
+##########################
+setup/*-backup.sql.gz
+setup/backup.sql.gz
+
+/project/bin/*
+
+# Log files
+project/yarn-error.log
+
+node_modules
+
+/project/phpunit.xml
+
+# test coverage
+/project/coverage/mixed
+!/project/coverage/mixed/.gitkeep
+/project/coverage/functional
+!/project/coverage/functional/.gitkeep
+/project/coverage/unit
+!/project/coverage/unit/.gitkeep
+/project/coverage/integration
+!/project/coverage/integration/.gitkeep
+/project/metrics
+!/project/metrics/.gitkeep
+/project/clover.xml
+
+project/.phpcs-cache
+
+/backup/*
+/project/vendor/*
+
+# Build files
+/project/public/build
+!/project/public/build/.gitkeep
+
+# Translation files for environments
+/project/translations/messages.de_DE.yml
+/project/translations/security.de_DE.xlf
+/project/translations/validators.de_DE.yml
+/project/translations/weekdays.de_DE.yml
+
+# Robots txt for Search Engines
+/project/public/robots.txt
+/.idea_/
