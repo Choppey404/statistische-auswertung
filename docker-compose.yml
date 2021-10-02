@@ -19,12 +19,11 @@ services:
         depends_on:
             - "db"
     db:
-        container_name: database
         image: mariadb:10.3
+        restart: unless-stopped
         environment:
             MYSQL_ROOT_PASSWORD: root
             MYSQL_DATABASE: db
-            MYSQL_USER: root
         ports:
             - '3307:3306'
         volumes:
@@ -33,7 +32,7 @@ services:
         image: adminer:4.7.2
         restart: unless-stopped
         ports:
-            - "1080:8080"
+            - "8080:8080"
         depends_on:
             - "db"
     web:
