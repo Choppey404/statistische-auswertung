@@ -1,17 +1,5 @@
 version: "3.7"
 services:
-    db:
-        container_name: database
-        image: mariadb:10.3
-        environment:
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: db
-            MYSQL_USER: root
-        ports:
-            - '3307:3306'
-        volumes:
-            - "dbdata:/var/lib/mysql:cached"
-
     php:
         container_name: php
         restart: unless-stopped
@@ -29,8 +17,18 @@ services:
         environment:
             PHP_IDE_CONFIG: serverName=docker-server
         depends_on:
-            - db
-
+            - "db"
+    db:
+        container_name: database
+        image: mariadb:10.3
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: db
+            MYSQL_USER: root
+        ports:
+            - '3307:3306'
+        volumes:
+            - "dbdata:/var/lib/mysql:cached"
     adminer:
         image: adminer:4.7.2
         restart: unless-stopped
@@ -42,7 +40,7 @@ services:
         image: nginx:1.15.3-alpine
         restart: unless-stopped
         ports:
-            - "8080:80"
+            - "80:80"
         depends_on:
             - "php"
         volumes:
