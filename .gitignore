@@ -1,6 +1,9 @@
 # For project specific ignore rules look at /project/.gitignore
 ###############################################################
 
+/vendor/
+/bin/.phpunit/
+
 # IDE and editor specific files #
 #################################
 nbproject
@@ -94,3 +97,5 @@ project/.phpcs-cache
 # Robots txt for Search Engines
 /project/public/robots.txt
 /.idea_/
+
+/vendor/
