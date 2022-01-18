@@ -13,8 +13,9 @@ Dies ist ein wissenschaftliches Projekt und soll ein Modul zur produktiv eingese
 ##### Getting started
 
 1. Clone this repository
-1. Build and start the docker containers: `$ docker-compose up -d`
-1. Bootstrap: `$ docker-compose exec php composer bootstrap-project`
+1. Change to project directory
+3. Build and start the docker containers: `$ docker-compose up -d`
+4. Bootstrap: `$ docker-compose exec php composer bootstrap-project`
 
 
 ##### Usages
