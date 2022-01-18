@@ -3,6 +3,7 @@
 
 /vendor/
 /bin/.phpunit/
+/bin/
 
 # IDE and editor specific files #
 #################################
