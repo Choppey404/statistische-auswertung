@@ -12,5 +12,4 @@ bin/console form-builder:migrate:appointments # migrates appointments to form bu
 bin/console c:c # clears the cache for current env (cache:clear)
 composer setup-translation-files # copies translation files based on env
 bin/console translation:setup-files # copies translation files based on env
-composer coverage-full # Generate all Code Coverages (slow) [pcov muss an sein!]
 BOOTSTRAP_CACHE_CLEAR=0 vendor/bin/infection --filter=src/CalendarCalculator -j$(nproc) --test-framework-options=" tests/Unit" --initial-tests-php-options="-d extension=pcov.so" # example of testing only one Folder and activate pcov only for initial coverage generation
