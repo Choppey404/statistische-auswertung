@@ -24,14 +24,7 @@ Encore
     .addEntry('app', './assets/js/app.js')
 
     // uncomment if you use Sass/SCSS files
-    .enableSassLoader(() => {
-        const envs = dotenv.config({path: './.env.local'}).parsed;
-        const imagePath = Encore.isProduction() ? `../img/${envs['DEPLOY_ENVIRONMENT']}/logo.png` : `../../img/${envs['DEPLOY_ENVIRONMENT']}/logo.png`
-
-        return {
-            additionalData: '$logo_url: "' + imagePath + '";',
-        }
-    })
+    .enableSassLoader()
 
     // uncomment for legacy applications that require $/jQuery as a global variable
     .autoProvidejQuery()
