@@ -1,10 +1,6 @@
 # For project specific ignore rules look at /project/.gitignore
 ###############################################################
 
-/vendor/
-/bin/.phpunit/
-/bin/
-
 # IDE and editor specific files #
 #################################
 nbproject
@@ -57,8 +53,6 @@ metrics/*
 ##########################
 setup/*-backup.sql.gz
 setup/backup.sql.gz
-
-/project/bin/*
 
 # Log files
 project/yarn-error.log
