@@ -1,0 +1,13 @@
+{% if violation is defined %}
+<div class="violation-container">
+    {{ violation }}
+</div>
+{% endif %}
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-primary">{{ button_label|default('Speichern') }}</button>
+    <a href="{{ path('appointment_list_index') }}" class="btn btn-secondary float-right">
+        Zurück
+    </a>
+
+{{ form_end(form) }}

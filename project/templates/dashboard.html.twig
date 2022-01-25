@@ -1,0 +1,123 @@
+{% extends 'main.html.twig' %}
+{% block content %}
+    <div class="row">
+        <div class="col-6 mt-4">
+            <canvas class="chart" id="appointment-length" height="300"></canvas>
+        </div>
+        <div class="col-6 mt-4">
+            <canvas class="chart" id="appointment-distribution" height="300"></canvas>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        // Appointment Length
+        let $appointmentLengthChart = $('#appointment-length');
+        let lengthConfig = {
+            type: 'bar',
+            data: {
+                labels: [
+                    {% for key in appointmentLengthData|keys %}
+                    '{{ key }} Minuten',
+                    {% endfor %}
+                ],
+                datasets: [{
+                    data: [
+                        {% for data in appointmentLengthData %}
+                        {{ data.count }},
+                        {% endfor %}
+                    ],
+                    width: 300,
+                    backgroundColor: [
+                        {% for data in appointmentLengthData %}
+                        '{{ data.color }}',
+                        {% endfor %}
+                    ],
+                    borderColor: [
+                        {% for data in appointmentLengthData %}
+                        '{{ data.color }}',
+                        {% endfor %}
+                    ],
+                    borderWidth: 1
+                }],
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Verteilung der Termindauer',
+                        font: {
+                            size: 16
+                        }
+                    }
+                }
+            }
+        };
+        let lengthChart = new Chart($appointmentLengthChart, lengthConfig);
+
+        // Appointment Distribution
+        let $appointmentDistributionChart = $('#appointment-distribution');
+        let distributionConfig = {
+            type: 'polarArea',
+            data: {
+                labels: [
+                    {% for data in appointmentDistributionData %}
+                    '{{ data.legalService }}',
+                    {% endfor %}
+                ],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [
+                        {% for data in appointmentDistributionData %}
+                        {{ data.count }},
+                        {% endfor %}
+                    ],
+                    width: 300,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Terminverteilung nach Dienstleistung',
+                        font: {
+                            size: 16
+                        }
+                    }
+                }
+            }
+        };
+        let distributionChart = new Chart($appointmentDistributionChart, distributionConfig);
+
+    </script>
+{% endblock %}

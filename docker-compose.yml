@@ -1,0 +1,59 @@
+version: "3.7"
+services:
+    php:
+        container_name: php
+        restart: unless-stopped
+        build:
+            context: .
+            dockerfile: docker/php/Dockerfile
+        ports:
+            - '9000:9000'
+        volumes:
+            - ./app:/var/www/project
+            - "./project/:/usr/src/app:cached"
+            - "./docker/php/php.ini:/usr/local/etc/php/php.ini:ro"
+            - "./docker/php/opcache.ini:/usr/local/etc/php/conf.d/opcache.ini:ro"
+        environment:
+            PHP_IDE_CONFIG: serverName=docker-server
+        depends_on:
+            - "db"
+    db:
+        image: mariadb:10.3
+        restart: unless-stopped
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: db
+        ports:
+            - '3307:3306'
+        volumes:
+            - "dbdata:/var/lib/mysql:cached"
+    adminer:
+        image: adminer:4.7.2
+        restart: unless-stopped
+        ports:
+            - "8080:8080"
+        depends_on:
+            - "db"
+    web:
+        image: nginx:1.15.3-alpine
+        restart: unless-stopped
+        ports:
+            - "80:80"
+        depends_on:
+            - "php"
+        volumes:
+            - "./project/public/:/usr/src/app:cached"
+            - "./docker/default.conf:/etc/nginx/conf.d/default.conf:ro"
+    node:
+        image: node:14-alpine
+        restart: "no"
+        user: node
+        working_dir: /usr/src/app
+        environment:
+            - "NODE_ENV=development"
+        command: "npm run watch:docker"
+        volumes:
+            - "./project/:/usr/src/app:cached"
+
+volumes:
+    dbdata:

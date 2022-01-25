@@ -1,0 +1,30 @@
+{
+  "name": "auswertung",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev-server": "encore dev-server",
+    "watch": "encore dev --watch",
+    "watch:docker": "npm install && npm run watch",
+    "build:dev": "encore dev",
+    "build:docker": "npm install && npm run build:dev",
+    "build:prod": "encore production"
+  },
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.31.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^10.0.2"
+  },
+  "dependencies": {
+    "bootstrap-colorpicker": "^3.2.0",
+    "core-js": "^3.6.5",
+    "dotenv": "^8.2.0",
+    "jquery": "^3.5.0",
+    "jquery-serializejson": "^3.1.0",
+    "moment": "^2.28.0",
+    "popper.js": "^1.16.1"
+  },
+  "author": "",
+  "license": "ISC"
+}

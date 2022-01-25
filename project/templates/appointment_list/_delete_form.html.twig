@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('appointment_list_delete', {'id': appointment.id}) }}" onsubmit="return confirm('Termin sicher löschen?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ appointment.id) }}">
+    <button class="btn btn-danger float-right mt-4">Löschen</button>
+</form>

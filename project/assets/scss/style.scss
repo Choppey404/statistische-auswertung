@@ -1,0 +1,24 @@
+p {
+  font-size: 20px;
+}
+
+.container {
+  min-height: calc(100vh - 56px);
+}
+
+select[name="appointment[fromDate][time][hour]"],
+select[name="appointment[toDate][time][hour]"] {
+  margin-left: 20px;
+}
+
+.sidebar {
+  min-height: 99vh;
+}
+
+.violation-container {
+  padding: 10px 20px;
+  background-color: #ffe392;
+  margin: 10px 0;
+  border-radius: 3px;
+  border: 1px #ffcc37 solid;
+}

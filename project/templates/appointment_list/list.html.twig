@@ -1,0 +1,39 @@
+{% extends 'main.html.twig' %}
+
+{% block title %}Terminübersicht{% endblock %}
+
+{% block content %}
+    <h1>Terminübersicht</h1>
+    <a href="{{ path('appointment_list_new') }}" class="btn btn-primary mb-3">Termin anlegen</a>
+    <table class="table" id="appointment-datatable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Von</th>
+                <th>Bis</th>
+                <th>Dienstleistung</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.id }}</td>
+                <td>{{ appointment.fromDate|date('d-m-Y H:i:s') }}</td>
+                <td>{{ appointment.toDate|date('d-m-Y H:i:s') }}</td>
+                <td>{{ appointment.legalService.name }}</td>
+                <td>
+                    <a href="{{ path('appointment_list_edit', {'id': appointment.id}) }}"><i class="bi-pen-fill text-dark mr-2"></i></a>
+                    <a class="delete-appointment delete-appointment-{{ appointment.id }}"
+                       data-delete-url="{{ path('appointment_list_delete', {'id': appointment.id}) }}"
+                       href="{{ path('appointment_list_delete', {'id': appointment.id}) }}"><i class="bi-trash-fill text-dark"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Keine Einträge gefunden</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
